@@ -163,59 +163,70 @@ public struct PasswordStrengthView: View {
                 }
             }
             
-            // Strength Indicator
+            // Strength Indicator (only after typing)
             if !meter.password.isEmpty {
                 VStack(alignment: .leading, spacing: 8) {
                     HStack {
                         Text("Strength:")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
-                        
+
                         Text(meter.strengthLevel.rawValue)
                             .font(.subheadline)
                             .fontWeight(.semibold)
                             .foregroundColor(meter.strengthLevel.color)
                     }
-                    
-                    // Progress Bar
+
                     GeometryReader { geometry in
                         ZStack(alignment: .leading) {
                             Rectangle()
                                 .fill(Color.gray.opacity(0.2))
                                 .frame(height: 8)
                                 .cornerRadius(4)
-                            
+
                             Rectangle()
                                 .fill(meter.strengthLevel.color)
-                                .frame(width: geometry.size.width * meter.strengthLevel.progress, height: 8)
+                                .frame(
+                                    width: geometry.size.width * meter.strengthLevel.progress,
+                                    height: 8
+                                )
                                 .cornerRadius(4)
-                                .animation(.easeInOut(duration: 0.3), value: meter.strengthLevel)
+                                .animation(.easeInOut(duration: 0.3),
+                                           value: meter.strengthLevel)
                         }
                     }
                     .frame(height: 8)
                 }
-                
-                // Rules Checklist
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Password Requirements:")
-                        .font(.subheadline)
-                        .fontWeight(.medium)
-                        .padding(.top, 8)
-                    
-                    ForEach(meter.rules) { rule in
-                        HStack(spacing: 8) {
-                            Image(systemName: meter.isRuleSatisfied(rule) ? "checkmark.circle.fill" : "circle")
-                                .foregroundColor(meter.isRuleSatisfied(rule) ? .green : .gray)
-                                .font(.system(size: 16))
-                            
-                            Text(rule.title)
-                                .font(.caption)
-                                .foregroundColor(meter.isRuleSatisfied(rule) ? .primary : .secondary)
-                        }
-                        .animation(.easeInOut(duration: 0.2), value: meter.isRuleSatisfied(rule))
+            }
+
+            // ✅ Rules Checklist (ALWAYS visible)
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Password Requirements:")
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                    .padding(.top, 8)
+
+                ForEach(meter.rules) { rule in
+                    HStack(spacing: 8) {
+                        Image(systemName: meter.isRuleSatisfied(rule)
+                              ? "checkmark.circle.fill"
+                              : "circle")
+                            .foregroundColor(
+                                meter.isRuleSatisfied(rule) ? .green : .gray
+                            )
+                            .font(.system(size: 16))
+
+                        Text(rule.title)
+                            .font(.caption)
+                            .foregroundColor(
+                                meter.isRuleSatisfied(rule) ? .primary : .secondary
+                            )
                     }
+                    .animation(.easeInOut(duration: 0.2),
+                               value: meter.isRuleSatisfied(rule))
                 }
             }
+
         }
         .padding()
     }
