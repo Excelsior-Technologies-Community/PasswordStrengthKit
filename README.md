@@ -16,7 +16,7 @@ real-time validation and optional secure storage.
 
 ```
 
-[https://github.com/Excelsior-Technologies-Community/PasswordStrengthKit](https://github.com/Excelsior-Technologies-Community/PasswordStrengthKit)
+https://github.com/Excelsior-Technologies-Community/PasswordStrengthKit
 
 ````
 
