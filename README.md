@@ -58,12 +58,8 @@ PasswordStrengthView(meter: passwordMeter)
 ## Full Example
 
 ```swift
-//  ContentView.swift
-//  DemoProject
-//
-//  Created by Noman Belim
-//
-
+ 
+ 
 import SwiftUI
 import PasswordStrengthKit
 
