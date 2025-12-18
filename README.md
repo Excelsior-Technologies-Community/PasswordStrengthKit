@@ -6,6 +6,25 @@ real-time validation and optional secure storage.
 
 ---
 
+## Add Dependency (Swift Package Manager)
+
+### Using Xcode
+
+1. Open your project in Xcode
+2. Go to **File → Add Packages…**
+3. Paste the repository URL:
+
+```
+
+[https://github.com/Excelsior-Technologies-Community/PasswordStrengthKit](https://github.com/Excelsior-Technologies-Community/PasswordStrengthKit)
+
+````
+
+4. Click **Add Package**
+5. Select **PasswordStrengthKit** and add it to your app target
+
+---
+
 ## Import
 
 ```swift
@@ -112,5 +131,4 @@ userPassword
 * `userPassword` → final password value
 * `passwordStrength` → strength state
 
----
  
